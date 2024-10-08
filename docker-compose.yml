@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "5050:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:Admin369*@localhost:5432/layout_db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Admin369*
+      - POSTGRES_DB=layout_db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
